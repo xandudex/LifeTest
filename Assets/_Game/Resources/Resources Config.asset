@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189a1c88fbacc344abfd159d997711cd, type: 3}
+  m_Name: Resources Config
+  m_EditorClassIdentifier: 
+  <FoodPrefab>k__BackingField: {fileID: 6858286771759742821, guid: 2efe175698ece7b46bafebe914e72906, type: 3}
+  <AnimalPrefab>k__BackingField: {fileID: 6858286771759742821, guid: f24b0609f8c480249921f58f196c9d1e, type: 3}
