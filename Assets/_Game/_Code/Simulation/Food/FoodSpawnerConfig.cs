@@ -8,5 +8,8 @@ namespace Xandudex.LifeGame
     {
         [field: SerializeField]
         public Transform Parent { get; private set; }
+
+        [field: SerializeField]
+        public int MaxSecondsToTraverse { get; private set; }
     }
 }

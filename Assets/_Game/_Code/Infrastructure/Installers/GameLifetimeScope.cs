@@ -7,7 +7,16 @@ namespace Xandudex.LifeGame
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField]
-        GameBoardSettings gameBoardSettings;
+        Camera camera;
+
+        [SerializeField]
+        SimulationUiView simulationSpeedView;
+
+        [SerializeField]
+        GameBoardView gameBoardView;
+
+        [SerializeField]
+        GameBoardConfig gameBoardConfig;
 
         [SerializeField]
         AnimalSpawnerConfig animalConfig;
@@ -17,14 +26,33 @@ namespace Xandudex.LifeGame
 
         protected override void Configure(IContainerBuilder builder)
         {
-            RegisterBoardSettings(builder);
+            RegisterCancellationToken(builder);
+            RegisterCamera(builder);
+            RegisterGameFactory(builder);
+            RegisterGameBoard(builder);
             RegisterAnimals(builder);
             RegisterFood(builder);
+            RegisterSpeedControl(builder);
         }
 
-        private void RegisterBoardSettings(IContainerBuilder builder)
+        private void RegisterCancellationToken(IContainerBuilder builder)
         {
-            builder.RegisterInstance(gameBoardSettings);
+            builder.RegisterInstance(destroyCancellationToken);
+            builder.RegisterEntryPoint<CameraMovement>();
+        }
+
+        private void RegisterCamera(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(camera);
+        }
+
+        private void RegisterGameFactory(IContainerBuilder builder) =>
+            builder.RegisterEntryPoint<GameFactory>().AsSelf();
+        private void RegisterGameBoard(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(gameBoardConfig);
+            builder.RegisterInstance(gameBoardView);
+            builder.RegisterEntryPoint<GameBoard>().AsSelf();
         }
 
         private void RegisterAnimals(IContainerBuilder builder)
@@ -37,6 +65,12 @@ namespace Xandudex.LifeGame
         {
             builder.RegisterInstance(foodConfig);
             builder.RegisterEntryPoint<FoodSpawner>();
+        }
+
+        private void RegisterSpeedControl(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(simulationSpeedView);
+            builder.RegisterEntryPoint<SimulationUiPresenter>().AsSelf();
         }
     }
 }

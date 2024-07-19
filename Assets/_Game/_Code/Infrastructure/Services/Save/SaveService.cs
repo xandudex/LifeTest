@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Xandudex.LifeGame
 {
@@ -19,7 +20,7 @@ namespace Xandudex.LifeGame
         public void Save()
         {
             SavedData = new();
-            var list = (Func<ISaveData>[])Saving.GetInvocationList();
+            var list = Saving.GetInvocationList().Cast<Func<ISaveData>>().ToArray();
 
             for (int i = 0; i < list.Length; i++)
             {
@@ -38,10 +39,18 @@ namespace Xandudex.LifeGame
             Loaded?.Invoke();
         }
 
-        public bool TryLoad<T>(out ISaveData data) where T : ISaveData
+        public bool TryLoad<T>(out T data) where T : ISaveData
         {
             Type type = typeof(T);
-            return SavedData.TryGetValue(type, out data);
+
+            if (!SavedData.TryGetValue(type, out ISaveData stored))
+            {
+                data = default;
+                return false;
+            }
+
+            data = (T)stored;
+            return true;
         }
 
         void SaveToFile()

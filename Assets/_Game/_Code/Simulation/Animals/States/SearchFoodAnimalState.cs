@@ -31,6 +31,7 @@ namespace Xandudex.LifeGame
 
             void MoveTo(Food food)
             {
+                Animal.food = food;
                 Animal.ChangeState<MovingToFoodAnimalState, Food>(food);
             }
         }

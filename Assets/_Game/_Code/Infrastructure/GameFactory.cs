@@ -39,17 +39,20 @@ namespace Xandudex.LifeGame
 
         public T Create<T>(params object[] args)
         {
-            var childScope =
-                scope.CreateChild(o =>
-                {
-                    foreach (object arg in args)
-                        o.RegisterInstance(arg).As(arg.GetType());
+            return scope.Container.CreateScope(o =>
+            {
+                foreach (object arg in args)
+                    o.RegisterInstance(arg).As(arg.GetType());
 
-                    o.RegisterEntryPoint<T>().AsSelf();
-                });
-
-            return childScope.Container.Resolve<T>();
+                o.RegisterEntryPoint<T>().AsSelf();
+            }).Resolve<T>();
         }
+
+        internal GameObject Instantiate(GameObject prefab) =>
+            scope.Container.Instantiate(prefab);
+
+        internal GameObject Instantiate(GameObject prefab, Transform parent) =>
+            Instantiate(prefab, Vector3.zero, parent);
 
         internal GameObject Instantiate(GameObject prefab, Vector3 position, Transform parent)
         {

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Xandudex.Utility.StateMachine;
+﻿using Xandudex.Utility.StateMachine;
 
 namespace Xandudex.LifeGame
 {
@@ -12,8 +11,8 @@ namespace Xandudex.LifeGame
 
             public async void Enter(Food food)
             {
-                await Awaitable.WaitForSecondsAsync(1);
-                food.Eat();
+                await food.Eat();
+                Animal.food = null;
                 Animal.ChangeState<SearchFoodAnimalState>();
             }
         }

@@ -11,6 +11,6 @@ namespace Xandudex.LifeGame
 
         void Save();
         void Load();
-        bool TryLoad<T>(out ISaveData data) where T : ISaveData;
+        bool TryLoad<T>(out T data) where T : ISaveData;
     }
 }

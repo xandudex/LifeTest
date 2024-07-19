@@ -8,6 +8,8 @@ using Xandudex.Utility.StateMachine;
 
 namespace Xandudex.LifeGame
 {
+    internal record AnimalEat(Animal Animal);
+    internal record AnimalStateChanged(Animal Animal);
     internal partial class Animal : IStateMachine<BaseAnimalState>, IStartable
     {
         Dictionary<Type, BaseAnimalState> states;

@@ -11,6 +11,7 @@
     "com.unity.test-framework": "1.4.4",
     "com.unity.timeline": "1.8.7",
     "com.unity.ugui": "2.0.0",
+    "com.unity.visualeffectgraph": "17.0.3",
     "com.unity.visualscripting": "1.9.4",
     "jp.hadashikick.vcontainer": "1.16.2",
     "org.nuget.r3": "1.1.15",
@@ -54,7 +55,8 @@
       "scopes": [
         "com.github-glitchenzo.nugetforunity",
         "com.cysharp",
-        "jp.hadashikick"
+        "jp.hadashikick",
+        "com.unity.uiextensions"
       ]
     },
     {

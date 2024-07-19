@@ -12,6 +12,7 @@ namespace Xandudex.LifeGame
             RegisterGameResources(builder);
             RegisterGameFactory(builder);
             RegisterSaveService(builder);
+            RegisterSceneLoader(builder);
         }
 
         private void RegisterMessagePipe(IContainerBuilder builder)
@@ -29,6 +30,7 @@ namespace Xandudex.LifeGame
         private void RegisterSaveService(IContainerBuilder builder) =>
             builder.RegisterEntryPoint<SaveService>();
 
-
+        private void RegisterSceneLoader(IContainerBuilder builder) =>
+            builder.RegisterEntryPoint<SceneLoader>();
     }
 }

@@ -6,29 +6,39 @@ namespace Xandudex.LifeGame
 {
     internal partial class Animal
     {
+
+
         internal class Mover
         {
+            bool isMoving;
             NavMeshAgent agent;
-            CancellationTokenSource cts;
-            public Mover(NavMeshAgent agent)
+
+            private readonly CancellationToken token;
+            public Mover(SimulationSettings settings, NavMeshAgent agent, CancellationToken token)
             {
                 this.agent = agent;
+                this.token = token;
+                agent.speed = settings.AnimalsSpeed;
             }
 
             public async Awaitable Move(Vector3 position)
             {
-                cts = new();
-                CancellationToken token = cts.Token;
+                isMoving = true;
 
                 agent.destination = position;
-                while (!Arrived())
+                while (isMoving && !Arrived())
+                {
                     await Awaitable.NextFrameAsync(token);
+                    if (token.IsCancellationRequested)
+                        return;
+                }
             }
 
             public void Stop()
             {
-                cts?.Cancel();
+                isMoving = false;
             }
+
 
             bool Arrived()
             {
@@ -43,7 +53,6 @@ namespace Xandudex.LifeGame
 
                 return true;
             }
-
         }
     }
 }
