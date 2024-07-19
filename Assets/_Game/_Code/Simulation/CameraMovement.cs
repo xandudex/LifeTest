@@ -28,7 +28,5 @@ namespace Xandudex.LifeGame
             cameraTransform.RotateAround(Vector3.zero, Vector3.up, speed * (Time.deltaTime / Time.timeScale));
             cameraTransform.LookAt(Vector3.zero);
         }
-
-
     }
 }
