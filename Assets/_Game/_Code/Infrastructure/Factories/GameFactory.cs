@@ -2,7 +2,7 @@
 using VContainer;
 using VContainer.Unity;
 
-namespace Xandudex.LifeGame
+namespace Life.Factories
 {
     internal class GameFactory
     {
@@ -12,30 +12,6 @@ namespace Xandudex.LifeGame
         {
             this.scope = scope;
         }
-
-        /*        public Food CreateFood(GameObject foodObject)
-                {
-                    var childScope =
-                    scope.CreateChild(o =>
-                    {
-                        o.RegisterInstance(foodObject);
-                        o.RegisterEntryPoint<Food>().AsSelf();
-                    });
-
-                    return childScope.Container.Resolve<Food>();
-                }
-
-                public Food CreateAnimal(GameObject foodObject)
-                {
-                    var childScope =
-                    scope.CreateChild(o =>
-                    {
-                        o.RegisterInstance(foodObject);
-                        o.RegisterEntryPoint<Food>().AsSelf();
-                    });
-
-                    return childScope.Container.Resolve<Food>();
-                }*/
 
         public T Create<T>(params object[] args)
         {

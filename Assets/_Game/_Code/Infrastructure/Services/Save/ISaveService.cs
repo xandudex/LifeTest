@@ -1,6 +1,6 @@
 using System;
 
-namespace Xandudex.LifeGame
+namespace Life.Services.Save
 {
     internal interface ISaveService
     {

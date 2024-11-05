@@ -1,4 +1,4 @@
-﻿namespace Xandudex.LifeGame
+﻿namespace Life.Services.Save
 {
     interface ISaveData
     {

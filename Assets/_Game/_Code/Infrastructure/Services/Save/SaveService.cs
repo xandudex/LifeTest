@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Life.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Xandudex.LifeGame
+namespace Life.Services.Save
 {
-    internal class SaveService : ISaveService
+    internal class SaveService : Service, ISaveService
     {
         public event Func<ISaveData> Saving;
         public event Action Saved;
@@ -55,12 +56,12 @@ namespace Xandudex.LifeGame
 
         void SaveToFile()
         {
-
+            //todo
         }
 
         void LoadFromFile()
         {
-
+            //todo
         }
     }
 }
